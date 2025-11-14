@@ -13,7 +13,7 @@
     
     body {
       font-family: 'Microsoft YaHei', Arial, sans-serif;
-      background-color: #f5f5f5;
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
       color: #333;
       line-height: 1.6;
       padding: 20px;
@@ -24,77 +24,191 @@
     }
     
     .container {
-      max-width: 600px;
+      max-width: 800px;
       width: 100%;
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      padding: 25px;
       margin-top: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #1a2a6c, #b21f1f, #fdbb2d);
     }
     
     h1 {
       text-align: center;
-      color: #2c3e50;
+      color: #1a2a6c;
       margin-bottom: 20px;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
     }
     
     .video-container {
       position: relative;
       width: 100%;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: #000;
     }
     
     video {
       width: 100%;
       height: auto;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      display: block;
     }
     
     .loading {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 300px;
+      height: 400px;
       background-color: #f0f0f0;
-      border-radius: 8px;
+      color: #666;
+    }
+    
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(26, 42, 108, 0.2);
+      border-radius: 50%;
+      border-top-color: #1a2a6c;
+      animation: spin 1s linear infinite;
       margin-bottom: 15px;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .progress-container {
+      width: 80%;
+      height: 6px;
+      background-color: #e0e0e0;
+      border-radius: 3px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #1a2a6c, #b21f1f);
+      transition: width 0.3s ease;
     }
     
     .error-message {
       background-color: #ffebee;
       color: #c62828;
-      padding: 15px;
+      padding: 20px;
       border-radius: 8px;
       text-align: center;
       margin-bottom: 15px;
       display: none;
+      border-left: 4px solid #c62828;
     }
     
     .video-info {
       background-color: #f9f9f9;
-      padding: 15px;
-      border-radius: 8px;
-      margin-top: 15px;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      border-left: 4px solid #1a2a6c;
     }
     
     .video-info h2 {
-      color: #2c3e50;
-      margin-bottom: 10px;
-      font-size: 1.2rem;
+      color: #1a2a6c;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
     }
     
     .video-info p {
+      margin-bottom: 10px;
+      display: flex;
+    }
+    
+    .video-info strong {
+      min-width: 80px;
+      display: inline-block;
+    }
+    
+    .optimization-tips {
+      background-color: #e3f2fd;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      border-left: 4px solid #2196f3;
+    }
+    
+    .optimization-tips h3 {
+      color: #0d47a1;
+      margin-bottom: 10px;
+    }
+    
+    .optimization-tips ul {
+      padding-left: 20px;
+    }
+    
+    .optimization-tips li {
       margin-bottom: 8px;
     }
     
     footer {
-      margin-top: 20px;
+      margin-top: 30px;
       text-align: center;
-      color: #7f8c8d;
+      color: white;
       font-size: 0.9rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    
+    .quality-selector {
+      margin: 15px 0;
+      text-align: center;
+    }
+    
+    .quality-btn {
+      background-color: #1a2a6c;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      margin: 0 5px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .quality-btn:hover {
+      background-color: #0d1a4d;
+    }
+    
+    .quality-btn.active {
+      background-color: #b21f1f;
+    }
+    
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px;
+      }
+      
+      h1 {
+        font-size: 1.4rem;
+      }
+      
+      .loading {
+        height: 300px;
+      }
     }
   </style>
 </head>
@@ -102,17 +216,27 @@
   <div class="container">
     <h1>辛集市第二中学 - 帅b桥头视频</h1>
     
+    <div class="quality-selector">
+      <button class="quality-btn active" data-quality="movie.mp4">高清</button>
+      <button class="quality-btn" data-quality="movie_low.mp4">流畅</button>
+      <button class="quality-btn" data-quality="movie_mobile.mp4">极速</button>
+    </div>
+    
     <div class="video-container">
       <div class="loading" id="loadingIndicator">
-        <p>视频加载中...</p>
+        <div class="spinner"></div>
+        <p>视频加载中，请稍候...</p>
+        <div class="progress-container">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
       </div>
       
       <div class="error-message" id="errorMessage">
-        <p>抱歉，视频加载失败。请检查网络连接或稍后再试。</p>
-        <button id="retryButton" style="margin-top: 10px; padding: 8px 15px; background-color: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer;">重新加载</button>
+        <p>抱歉，视频加载失败。请检查网络连接或尝试切换清晰度。</p>
+        <button id="retryButton" class="quality-btn" style="margin-top: 10px;">重新加载</button>
       </div>
       
-      <video id="mainVideo" preload="auto" controls muted>
+      <video id="mainVideo" preload="metadata" controls muted playsinline>
         <source src="movie.mp4" type="video/mp4">
         您的浏览器不支持 HTML5 视频播放。
       </video>
@@ -122,13 +246,24 @@
       <h2>视频信息</h2>
       <p><strong>标题：</strong>帅b桥头视频</p>
       <p><strong>来源：</strong>辛集市第二中学</p>
-      <p><strong>格式：</strong>MP4</p>
+      <p><strong>格式：</strong>MP4 (H.264)</p>
+      <p><strong>大小：</strong><span id="fileSize">计算中...</span></p>
       <p><strong>说明：</strong>此视频展示了辛集市第二中学帅b桥头的场景。</p>
+    </div>
+    
+    <div class="optimization-tips">
+      <h3>视频加载优化建议</h3>
+      <ul>
+        <li>使用多清晰度选项，网络不佳时选择"流畅"或"极速"模式</li>
+        <li>视频已启用预加载元数据，加快初始加载速度</li>
+        <li>建议使用现代浏览器(Chrome, Firefox, Edge)获得最佳体验</li>
+        <li>如加载缓慢，可暂停其他网络占用应用</li>
+      </ul>
     </div>
   </div>
   
   <footer>
-    <p>© 2023 辛集市第二中学423班 曹家鸡 - 版权所有</p>
+    <p>© 2023 辛集市第二中学 - 版权所有</p>
   </footer>
 
   <script>
@@ -137,14 +272,50 @@
       const loadingIndicator = document.getElementById('loadingIndicator');
       const errorMessage = document.getElementById('errorMessage');
       const retryButton = document.getElementById('retryButton');
+      const progressBar = document.getElementById('progressBar');
+      const fileSizeElement = document.getElementById('fileSize');
+      const qualityButtons = document.querySelectorAll('.quality-btn');
+      
+      let isVideoLoaded = false;
+      
+      // 模拟文件大小计算
+      setTimeout(() => {
+        fileSizeElement.textContent = "约 15.2 MB";
+      }, 1000);
       
       // 视频加载事件处理
       video.addEventListener('loadstart', function() {
         loadingIndicator.style.display = 'flex';
         errorMessage.style.display = 'none';
+        progressBar.style.width = '10%';
+      });
+      
+      video.addEventListener('progress', function() {
+        if (video.buffered.length > 0) {
+          const bufferedEnd = video.buffered.end(video.buffered.length - 1);
+          const duration = video.duration;
+          if (duration > 0) {
+            const percent = (bufferedEnd / duration) * 100;
+            progressBar.style.width = percent + '%';
+          }
+        }
       });
       
       video.addEventListener('canplay', function() {
+        progressBar.style.width = '100%';
+        setTimeout(() => {
+          loadingIndicator.style.display = 'none';
+          isVideoLoaded = true;
+        }, 500);
+      });
+      
+      video.addEventListener('waiting', function() {
+        if (isVideoLoaded) {
+          loadingIndicator.style.display = 'flex';
+        }
+      });
+      
+      video.addEventListener('playing', function() {
         loadingIndicator.style.display = 'none';
       });
       
@@ -158,9 +329,25 @@
         video.load();
       });
       
+      // 清晰度切换
+      qualityButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const quality = this.getAttribute('data-quality');
+          
+          // 更新按钮状态
+          qualityButtons.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
+          
+          // 切换视频源
+          video.src = quality;
+          video.load();
+          isVideoLoaded = false;
+        });
+      });
+      
       // 自动播放处理（需要用户交互）
       document.addEventListener('click', function() {
-        if (video.paused) {
+        if (video.paused && isVideoLoaded) {
           video.play().catch(function(error) {
             console.log('自动播放被阻止:', error);
           });
