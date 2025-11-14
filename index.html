@@ -1,13 +1,172 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>辛集市第二中学帅b桥头视频</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>辛集市第二中学 - 帅b桥头视频</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Microsoft YaHei', Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 600px;
+      width: 100%;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-top: 20px;
+    }
+    
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+    
+    .video-container {
+      position: relative;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    
+    video {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 300px;
+      background-color: #f0f0f0;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    
+    .error-message {
+      background-color: #ffebee;
+      color: #c62828;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 15px;
+      display: none;
+    }
+    
+    .video-info {
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+    }
+    
+    .video-info h2 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+    
+    .video-info p {
+      margin-bottom: 8px;
+    }
+    
+    footer {
+      margin-top: 20px;
+      text-align: center;
+      color: #7f8c8d;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
-  <video width="544" height="960" preload="auto" src=“movie.mp4”
-    controls autoplay loop muted>
-  </video>
+  <div class="container">
+    <h1>辛集市第二中学 - 帅b桥头视频</h1>
+    
+    <div class="video-container">
+      <div class="loading" id="loadingIndicator">
+        <p>视频加载中...</p>
+      </div>
+      
+      <div class="error-message" id="errorMessage">
+        <p>抱歉，视频加载失败。请检查网络连接或稍后再试。</p>
+        <button id="retryButton" style="margin-top: 10px; padding: 8px 15px; background-color: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer;">重新加载</button>
+      </div>
+      
+      <video id="mainVideo" preload="auto" controls muted>
+        <source src="movie.mp4" type="video/mp4">
+        您的浏览器不支持 HTML5 视频播放。
+      </video>
+    </div>
+    
+    <div class="video-info">
+      <h2>视频信息</h2>
+      <p><strong>标题：</strong>帅b桥头视频</p>
+      <p><strong>来源：</strong>辛集市第二中学</p>
+      <p><strong>格式：</strong>MP4</p>
+      <p><strong>说明：</strong>此视频展示了辛集市第二中学帅b桥头的场景。</p>
+    </div>
+  </div>
   
+  <footer>
+    <p>© 2023 辛集市第二中学423班 曹家鸡 - 版权所有</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const video = document.getElementById('mainVideo');
+      const loadingIndicator = document.getElementById('loadingIndicator');
+      const errorMessage = document.getElementById('errorMessage');
+      const retryButton = document.getElementById('retryButton');
+      
+      // 视频加载事件处理
+      video.addEventListener('loadstart', function() {
+        loadingIndicator.style.display = 'flex';
+        errorMessage.style.display = 'none';
+      });
+      
+      video.addEventListener('canplay', function() {
+        loadingIndicator.style.display = 'none';
+      });
+      
+      video.addEventListener('error', function() {
+        loadingIndicator.style.display = 'none';
+        errorMessage.style.display = 'block';
+      });
+      
+      // 重试按钮事件
+      retryButton.addEventListener('click', function() {
+        video.load();
+      });
+      
+      // 自动播放处理（需要用户交互）
+      document.addEventListener('click', function() {
+        if (video.paused) {
+          video.play().catch(function(error) {
+            console.log('自动播放被阻止:', error);
+          });
+        }
+      });
+    });
+  </script>
 </body>
-<html>
+</html>
